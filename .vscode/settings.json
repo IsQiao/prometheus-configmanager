@@ -1,0 +1,29 @@
+{
+    "remote.SSH.defaultForwardedPorts": [
+        {
+            "name": "prometheus-dev",
+            "localPort": 19090,
+            "remotePort": 19090,
+        },
+        {
+            "name": "alertmanager-dev",
+            "localPort": 19093,
+            "remotePort": 19093,
+        },
+        {
+            "name": "web-ui",
+            "localPort": 3000,
+            "remotePort": 3000,
+        },
+        {
+            "name": "promtheus-configmanager",
+            "localPort": 19100,
+            "remotePort": 19100,
+        },
+        {
+            "name": "alertmanager-configmanager",
+            "localPort": 19101,
+            "remotePort": 19101,
+        },
+    ]
+}

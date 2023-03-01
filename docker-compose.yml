@@ -40,7 +40,7 @@ services:
 
   alertmanager:
     container_name: alertmanager
-    image: docker.io/prom/alertmanager
+    image: docker.io/prom/alertmanager:v0.21.0
     volumes:
       - ./default_configs:/etc/alertmanager:ro
     ports:
@@ -48,7 +48,7 @@ services:
 
   prometheus:
     container_name: prometheus
-    image: docker.io/prom/prometheus
+    image: docker.io/prom/prometheus:v2.21.0
     volumes:
       - ./default_configs:/etc/prometheus:ro
     command:

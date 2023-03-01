@@ -20,4 +20,4 @@ alerting:
   alertmanagers:
     - scheme: http
       static_configs:
-        - targets: ['alertmanager:9093']
+        - targets: ['alertmanager-dev:9093']

@@ -3,3 +3,7 @@ yarn-error.log
 **/.env
 coverage
 .idea/
+alertmanager/alertmanager
+prometheus/prometheus
+alertmanager/__debug_bin
+prometheus/__debug_bin

@@ -1,0 +1,44 @@
+# Copyright (c) Facebook, Inc. and its affiliates.
+# This source code is licensed under the MIT license found in the
+# LICENSE file in the root directory of this source tree.
+
+version: "3.7"
+
+services:
+  alertmanager-dev:
+    container_name: alertmanager-dev
+    image: docker.io/prom/alertmanager:v0.21.0
+    volumes:
+      - ./default_configs_dev:/etc/alertmanager:ro
+    ports:
+      - 19093:9093
+
+  prometheus-dev:
+    container_name: prometheus-dev
+    image: docker.io/prom/prometheus:v2.21.0
+    volumes:
+      - ./default_configs_dev:/etc/prometheus:ro
+    command:
+      - "--config.file=/etc/prometheus/prometheus.yml"
+      - "--web.enable-lifecycle"
+    ports:
+      - 19090:9090
+
+  alerts-ui-dev:
+    container_name: alerts-ui-dev
+    build:
+      context: ./ui
+      dockerfile: Dockerfile
+    stdin_open: true
+    volumes:
+      - "./ui:/app"
+      - "/app/node_modules"
+    # ports:
+    #   - 3000:3000
+    network_mode: "host"
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+      - REACT_APP_AM_BASE_URL=http://localhost:19093/api/v2
+      - REACT_APP_AM_CONFIG_URL=http://localhost:19101/v1
+      - REACT_APP_PROM_CONFIG_URL=http://localhost:19100/v1
+      - REACT_APP_PROM_BASE_URL=http://localhost:19090/api/v1

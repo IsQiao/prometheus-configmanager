@@ -1,0 +1,10 @@
+groups:
+    - name: default
+      rules:
+        - alert: ee
+          expr: up == 1
+          labels:
+            severity: WARNING
+            tenant: default
+          annotations:
+            description: ee
